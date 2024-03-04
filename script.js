@@ -133,6 +133,17 @@ const playPreviousSong = () => {
     }
 };
 
+const shuffle = () => {
+    userData?.songs.sort(() => Math.random() - 0.5);
+    userData.currentSong = null;
+    userData.songCurrentTime = 0;
+  
+    renderSongs(userData?.songs);
+    pauseSong();
+    setPlayerDisplay();
+    setPlayButtonAccessibleText();
+};
+
 const setPlayerDisplay = () => {
     const playingSong = document.getElementById("player-song-title");
     const songArtist = document.getElementById("player-song-artist");
@@ -208,4 +219,5 @@ const sortSongs = () => {
 pauseButton.addEventListener("click",  pauseSong);
 nextButton.addEventListener("click", playNextSong);
 previousButton.addEventListener("click", playPreviousSong);
+shuffleButton.addEventListener("click", shuffle);
 renderSongs(sortSongs());
